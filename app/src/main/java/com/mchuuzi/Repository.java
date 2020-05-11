@@ -45,6 +45,11 @@ public class Repository {
 
     }
 
+    public static void clearCart(){
+        orderItems.clear();
+        Log.e("Repository", "Cart cleared");
+    }
+
 
 
 
@@ -77,8 +82,9 @@ public class Repository {
 
         orderItems.remove(orderItem);
 
-
     }
+
+
 
 
     private String Kales, Frenchbeans, Carrots, Cabbages, oranges, Onions, Spinach, banana, Sweet_peppers, apples, pineapples;
@@ -123,7 +129,7 @@ public class Repository {
         Vendors vendor2 = new Vendors("Kibaki Vendors", "Juja", R.drawable.grocery1);
         Vendors vendor3 = new Vendors("Njonjo Greens", "Thika", R.drawable.grocery3);
         Vendors vendor4 = new Vendors("Juja Pineapple Farm","Juja",R.drawable.pineapplefarm);
-        Vendors vendor5 = new Vendors("Sweet Banana Dealers","Kisii",R.drawable.bananafarm);
+        Vendors vendor5 = new Vendors("Banana Dealers","Kisii",R.drawable.bananafarm);
         Vendors vendor6 = new Vendors("Garissa Oranges","Garissa",R.drawable.orangefarm);
         Vendors vendor7 = new Vendors("Hoho Peppers","Nyeri",R.drawable.pepperfarm);
         Vendors vendor8 = new Vendors("Kinangop Farmers","Nyeri",R.drawable.cabbages);

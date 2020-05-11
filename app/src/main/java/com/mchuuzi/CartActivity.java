@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class CartActivity extends AppCompatActivity implements CartFragment.OnCheckoutClick, PaymentDialog.OnPaymentDialogOkClickListener {
+public class CartActivity extends AppCompatActivity implements CartFragment.OnCheckoutClick, CustomAlert.OnPaymentDialogOkClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +55,7 @@ public class CartActivity extends AppCompatActivity implements CartFragment.OnCh
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter("HoverReceiver"));
-    }
+
 
     @Override
     public void onClick() { // checkout clicked
@@ -83,56 +79,53 @@ public class CartActivity extends AppCompatActivity implements CartFragment.OnCh
         super.onActivityResult(requestCode, resultCode, data);
         try {
             if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
+                Repository.clearCart();
+                displayAlert("Payment", "You will receive an MPESA Confirmation message shortly", null);
                 String[] sessionTextArr = data.getStringArrayExtra("session_messages");
                 String uuid = data.getStringExtra("uuid");
-                Toast.makeText(this, "You will receive an MPESA confirmation message shortly", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "You will receive an MPESA confirmation message shortly", Toast.LENGTH_LONG).show();
                 Log.e("Hover success", "uuid: "+ uuid);
 //            Log.e("Hover success", "session_messages: " + Arrays.toString(sessionTextArr));
             } else if (requestCode == 0 && resultCode == Activity.RESULT_CANCELED) {
+                Repository.clearCart();
+
                 Toast.makeText(this, "Error: " + data.getStringExtra("error"), Toast.LENGTH_LONG).show();
                 Log.e("Hover error", data.getStringExtra("error"));
+            }else{
+                Repository.clearCart();
+
+                Log.e("Hover error", "result code "+ resultCode);
             }
         } catch (Exception e){
+            Repository.clearCart();
+
             Toast.makeText(CartActivity.this, "Hover Result Error", Toast.LENGTH_SHORT).show();
             Log.e("Hover", e.getMessage());
         }
 
     }
 
-    // receives data parsed from MPESA message via the Hover parser
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String [] data = intent.getStringArrayExtra("HOVER MESSAGE");
-//            Log.e("Hover broadcast", "data: "+ Arrays.toString(data));
-            if(data!= null){
-                Bundle bundle = new Bundle();
-                bundle.putStringArray("MPESA DATA", data);
-                displayDialog(bundle);
-            }
-        }
-    };
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(broadcastReceiver != null){
-            unregisterReceiver(broadcastReceiver);
-        }
-    }
-
-    public void displayDialog(Bundle args){
-        PaymentDialog dialogFragment = new PaymentDialog();
+    public void displayAlert(String title, String message, String posBtnText){
+        CustomAlert customAlert = CustomAlert.newInstance();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment prev = getSupportFragmentManager().findFragmentByTag("PaymentDialog");
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("AlertFragment");
         if (prev != null) {
             ft.remove(prev);
         }
-        ft.addToBackStack(null);
-        dialogFragment.setArguments(args);
+//        ft.addToBackStack(null);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", title);
+        bundle.putString("message", message);
 
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "PaymentDialog");
+        if(posBtnText != null)
+            bundle.putString("posBtnText", posBtnText);
+        else
+            bundle.putString("posBtnText", "OK");
+
+        customAlert.setArguments(bundle);
+        customAlert.setCancelable(true);
+
+        customAlert.show(ft, "AlertFragment");
     }
 
     @Override

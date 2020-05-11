@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class CartFragment extends Fragment {
     private List<OrderItem> orderItemList;
     private OnCheckoutClick listener;
     private Button checkOut;
+    private TextView tvTotal;
 
 
     interface OnCheckoutClick {
@@ -54,6 +56,9 @@ public class CartFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.cart_recycler);
         checkOut=view.findViewById(R.id.checkout);
+        tvTotal = view.findViewById(R.id.tv_cart_total);
+        int total = Repository.total();
+        tvTotal.setText("Total: Ksh."+String.valueOf(total));
         initComponents();
 
        /* view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
