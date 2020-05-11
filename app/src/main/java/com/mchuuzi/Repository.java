@@ -17,10 +17,6 @@ public class Repository {
     public static List<OrderItem> orderItems = new ArrayList<>();
     private List<Vendors> vendorsList = new ArrayList<>();
 
-   /* public static List<OrderItem> getOrderItems() {
-        return orderItems;
-    }*/
-
 
     public static int itemCount() {
         int total = 0;
@@ -126,8 +122,15 @@ public class Repository {
         Vendors vendor1 = new Vendors("Muriuki Grocers", "Westlands", R.drawable.grocery2);
         Vendors vendor2 = new Vendors("Kibaki Vendors", "Juja", R.drawable.grocery1);
         Vendors vendor3 = new Vendors("Njonjo Greens", "Thika", R.drawable.grocery3);
+        Vendors vendor4 = new Vendors("Juja Pineapple Farm","Juja",R.drawable.pineapplefarm);
+        Vendors vendor5 = new Vendors("Sweet Banana Dealers","Kisii",R.drawable.bananafarm);
+        Vendors vendor6 = new Vendors("Garissa Oranges","Garissa",R.drawable.orangefarm);
+        Vendors vendor7 = new Vendors("Hoho Peppers","Nyeri",R.drawable.pepperfarm);
+        Vendors vendor8 = new Vendors("Kinangop Farmers","Nyeri",R.drawable.cabbages);
 
-        vendorsList.addAll(Arrays.asList(vendor1, vendor2, vendor3));
+
+
+        vendorsList.addAll(Arrays.asList(vendor1, vendor2, vendor3,vendor4,vendor5,vendor6,vendor7,vendor8));
 
         return vendorsList;
     }
