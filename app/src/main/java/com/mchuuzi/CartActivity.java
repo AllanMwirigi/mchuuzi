@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,6 +35,9 @@ public class CartActivity extends AppCompatActivity implements CartFragment.OnCh
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setAllowEnterTransitionOverlap(true);
+//        }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame,CartFragment.newInstance()).commit();
 
         Hover.initialize(this);

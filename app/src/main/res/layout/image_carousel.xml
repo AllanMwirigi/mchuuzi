@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:id="@+id/image"
         android:src="@drawable/banana"
-        android:layout_height="220dp"/>
+        android:layout_height="220dp" />
 
 
 </LinearLayout>

@@ -36,14 +36,16 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                // Check if we're running on Android 5.0 or higher
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    // set an exit transition // Apply activity transition
-                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-                } else {
-                    // Swap without transition
-                    startActivity(i);
-                }
+                startActivity(i);
+
+//                // Check if we're running on Android 5.0 or higher
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    // set an exit transition // Apply activity transition
+//                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+//                } else {
+//                    // Swap without transition
+//                    startActivity(i);
+//                }
 //                finish(); // this messes up the transition
             }
         }, SPLASH_DURATION);

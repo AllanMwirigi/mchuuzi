@@ -21,7 +21,6 @@
             android:backgroundTint="#000"
             android:src="@drawable/banana"
             android:scaleType="fitCenter"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/products_imageview"

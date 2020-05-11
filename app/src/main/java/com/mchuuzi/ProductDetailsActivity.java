@@ -1,6 +1,8 @@
 package com.mchuuzi;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +27,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Check if we're running on Android 5.0 or higher
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setAllowEnterTransitionOverlap(true);
+//        }
 
         //here get the passed product
         ///clicked by use
@@ -70,6 +77,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
             if (Repository.itemCount() > 0) {
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
+
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    // set an exit transition // Apply activity transition
+//                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ProductDetailsActivity.this).toBundle());
+//                } else {
+//                    // Swap without transition
+//                }
             } else {
                 Toast.makeText(this, "Your Cart Is Empty", Toast.LENGTH_SHORT).show();
             }
@@ -78,10 +92,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
 
 
-            onBackPressed();
+//            onBackPressed();
+            finishAfterTransition();
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

@@ -1,5 +1,6 @@
 package com.mchuuzi;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements ProductFragment.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Check if we're running on Android 5.0 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setAllowEnterTransitionOverlap(true);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setAllowEnterTransitionOverlap(true);
+//        }
     }
 
     @Override
@@ -60,6 +61,14 @@ public class MainActivity extends AppCompatActivity implements ProductFragment.O
         if (Repository.itemCount() > 0) {
             Intent intent = new Intent(this, CartActivity.class);
             startActivity(intent);
+
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                // set an exit transition // Apply activity transition
+//                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+//            } else {
+//                // Swap without transition
+//                startActivity(intent);
+//            }
         } else {
             Toast.makeText(this, "Your Cart Is Empty", Toast.LENGTH_SHORT).show();
         }

@@ -76,8 +76,6 @@ public class ProductsAdapter extends RecyclerView.Adapter <ProductsAdapter.Produ
         @Override
         public void onClick(View view) {
             onProductItemClickedListener1.onProductItemClicked(productsList.get(getAdapterPosition()));
-
-
         }
     }
 }
