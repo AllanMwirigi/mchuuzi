@@ -1,6 +1,7 @@
 package com.mchuuzi;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,9 +12,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
 
+import android.transition.Explode;
+import android.transition.Slide;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements ProductFragment.OnFabClickListener {
@@ -24,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements ProductFragment.O
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // Check if we're running on Android 5.0 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setAllowEnterTransitionOverlap(true);
+        }
     }
 
     @Override

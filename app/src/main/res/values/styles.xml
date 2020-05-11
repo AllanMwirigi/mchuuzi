@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:fontFamily">@font/lato</item>
+
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,5 +26,9 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SmoothTransitionTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
 
 </resources>
